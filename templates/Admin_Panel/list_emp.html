@@ -1,0 +1,48 @@
+{% include "header.html" %}
+{% include "navbar.html" %}
+<html>
+    <head>
+        <title>Employee</title>
+        {% load static %}                
+    </head>
+    <body><br><br>      
+        <div class="container">
+            <h3 class="page-header text-primary text-left">Employee</h3>
+            <a href="{% url 'emp_add' %}" class="btn btn-success pull-right">Add</a><br><br>
+                    
+            <table class="table table-bordered">
+                <thead>                    
+                    <tr>
+                        <th>Employee Id</th>
+                        <th>Employee Name</th>
+                        <th>Designation</th>
+                        <th>Project</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>                
+                <tbody>
+                    {% if emp %}   
+                    {% for e in emp %}
+                    <tr>
+                        <td>{{e.id}}</td>                        
+                        <td>{{e.employee_name}}</td>
+                        <td>{{e.designation}} </td>
+                        <td>{{e.project}}</td>
+                        <td>{{e.address}}</td>                        
+                        <td><a href="{% url 'emp_edit' id=e.id %}" class="btn btn-success glyphicon glyphicon-pencil"></a> 
+                            <a href="{% url 'emp_del' id=e.id %}" class="btn btn-danger glyphicon glyphicon-remove"></a></td>                        
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr><td colspan="7">No Employee Found</td></tr>
+                    {% endif %}
+                </tbody>
+                
+            </table>
+            
+        </div>
+        
+        
+    </body>
+</html>

@@ -1,0 +1,42 @@
+{% include "header.html" %}
+{% include "navbar.html" %}
+<html>
+    <head>
+        <title>Designation</title>
+        {% load static %}                       
+    </head>    
+    <body><br><br>     
+        <div class="container">
+            <h3 class="page-header text-primary text-center">Designation</h3>            
+            <a href="{% url 'des_add' %}" class="btn btn-success pull-right">Add</a><br><br>
+                    
+            <table class="table table-bordered">
+                <thead>                    
+                    <tr>
+                        <th>S.No</th>
+                        <th>Designation</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>                
+                <tbody>
+                    {% if records %}   
+                    {% for rec in records %}
+                    <tr>
+                        <td>{{rec.id}}</td>                        
+                        <td>{{rec.designation}}</td>
+                        <td>{{rec.status}} </td>                        
+                        <td><a href="{% url 'des_edit' id=rec.id %}" class="btn btn-success glyphicon glyphicon-pencil"> </a>
+                            <a href="{% url 'des_del' id=rec.id %}" class="btn btn-danger glyphicon glyphicon-remove"></a></td>                        
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr><td colspan="4">No Category Found</td></tr>
+                    {% endif %}
+                </tbody>                
+            </table>            
+        </div>
+        
+        
+    </body>
+</html>

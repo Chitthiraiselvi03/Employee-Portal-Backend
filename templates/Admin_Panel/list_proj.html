@@ -1,0 +1,49 @@
+{% include "header.html" %}
+{% include "navbar.html" %}
+<html>
+    <head>
+        <title>Project</title>
+        {% load static %}                
+    </head>
+    <body><br><br>
+        <div class="container">
+            <h3 class="page-header text-primary text-center">Project</h3>
+            <a href="{% url 'proj_add' %}" class="btn btn-success pull-right">Add</a><br><br>
+                    
+            <table class="table table-bordered">
+                <thead>                    
+                    <tr>
+                        <th>S.No</th>
+                        <th>Project Name</th>
+                        <th>Technology</th>
+                        <th>Description</th>
+                        <th>Duration</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>                
+                <tbody>
+                    {% if proj %}                       
+                    {% for pj in proj %}                    
+                    <tr>
+                        <td>{{pj.id}}</td>                        
+                        <td>{{pj.project_name}}</td>
+                        <td>{{pj.technology}} </td> 
+                        <td>{{pj.description}}</td>                        
+                        <td>{{pj.duration}} {{pj.duration_type}}</td>
+                        
+                        <td><a href="{% url 'proj_edit' id=pj.id %}" class="btn btn-success glyphicon glyphicon-pencil"></a>
+                             <a href="{% url 'proj_del' id=pj.id %}" class="btn btn-danger glyphicon glyphicon-remove"></a></td>                        
+                    </tr>
+                    {% endfor %}                    
+                    {% else %}
+                    <tr><td colspan="6">No Project Found</td></tr>
+                    {% endif %}                    
+                </tbody>
+                
+            </table>
+            
+        </div>
+        
+        
+    </body>
+</html>

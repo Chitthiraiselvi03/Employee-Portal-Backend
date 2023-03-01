@@ -1,0 +1,26 @@
+
+{% extends "index.html" %}      
+{% block content %}		
+	{% if user.is_authenticated %}		
+		<div class="home"> 
+			<div class="employee-pic">			
+				<a href="{% url 'list_emp' %}"><img src="static/images/employee.jpg"  style="width:400px;height:400px;"></a>
+				<p>Employee</p>
+			</div>
+			<div class="designation-pic">	
+				<a href="{% url 'des_list' %}"><img src="static/images/designation1.jpg"  style="width:400px;height:400px;"></a>
+				<p>Designation</p>
+			</div>
+			<div class="technology-pic">	
+				<a href="{% url 'tech_list' %}"><img src="static/images/technology.jpg"  style="width:400px;height:400px;"></a>
+				<p>Technology</p>
+			</div>
+			<div class="project-pic">	
+				<a href="{% url 'proj_list' %}"><img src="static/images/project.jpg"  style="width:400px;height:400px;"></a>
+				<p>Project</p>
+			</div>
+		</div>					
+	{% else %}
+		<h1>Home Page</h1>		
+	{% endif %}	
+{% endblock %}
