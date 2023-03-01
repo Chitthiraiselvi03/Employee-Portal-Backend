@@ -1,0 +1,44 @@
+{% include "header.html" %}
+{% include "navbar.html" %}
+<html>
+    <head>
+        <title>Technology</title>
+        {% load static %}               
+    </head>
+    <body><br><br>
+        <div class="container">
+            <h3 class="page-header text-primary text-center">Technology</h3>
+            <a href="{% url 'tech_add' %}" class="btn btn-success pull-right">Add</a><br><br>
+                    
+            <table class="table table-bordered">
+                <thead>                    
+                    <tr>
+                        <th>S.No</th>
+                        <th>Technology</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>                
+                <tbody>
+                    {% if tech %}   
+                    {% for th in tech %}
+                    <tr>
+                        <td>{{th.id}}</td>                        
+                        <td>{{th.technology}}</td>
+                        <td>{{th.status}} </td>                        
+                        <td><a href="{% url 'tech_edit' id=th.id %}" class="btn btn-success glyphicon glyphicon-pencil"></a> 
+                            <a href="{% url 'tech_del' id=th.id %}"class="btn btn-danger glyphicon glyphicon-remove"></a></td>                        
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr><td colspan="4">No Technology Found</td></tr>
+                    {% endif %}
+                </tbody>
+                
+            </table>
+            
+        </div>
+        
+        
+    </body>
+</html>
